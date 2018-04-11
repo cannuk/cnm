@@ -19,7 +19,7 @@
     align-items: center;
     }
 
-.flex-item:nth-child(1) {
+.flex-item {
     -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
