@@ -2,16 +2,18 @@
   "name": "cnm",
   "version": "1.0.0",
   "description": "Describe cnm here",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "nwb build-react-app",
     "clean": "nwb clean-app",
     "start": "nwb serve-react-app",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "pages": "nwb build-react-app && cp CNAME ./dist/CNAME && gh-pages -d dist"
   },
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "moment": "^2.22.1",
     "nwb-sass": "^0.8.4",
     "react": "^16.3.2",
