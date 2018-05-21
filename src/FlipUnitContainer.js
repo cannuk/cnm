@@ -4,11 +4,10 @@ import AnimatedCard from './AnimatedCard.js';
 import './style/FlipUnitContainer.sass';
 export default class FlipUnitContainer extends React.Component {
   render() {
-    const { digit, shuffle, unit } = this.props;
+    const { digit, shuffle, unit, down } = this.props;
 
     let now = digit;
-    let before = digit - 1;
-
+    let before = down ? digit + 1 : digit - 1;
     // to prevent a negative value
     if (unit !== 'hours') {
       before = before === -1 ? 59 : before;

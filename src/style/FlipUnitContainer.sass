@@ -9,7 +9,7 @@
     perspective: 300px
     background-color: $card
     border-radius: 3px
-    box-shadow: 0px 10px 10px -10px darken(#0E790E, 8%)
+    box-shadow: $box-shadow
     margin: 0 5px
 .flipUnitContinerLabel
     text-align: center
@@ -17,6 +17,12 @@
     font-family: 'Droid Sans'
     margin: 5px 0
     color: darken(#0E790E, 3%)
+
+.ie
+    .flipUnitContainer
+      box-shadow: $ie-box-shadow  
+    .flipUnitContinerLabel
+        color: whitesmoke
 
 
 @media only screen and (max-device-width: 667px), screen and (max-width: 599px)
