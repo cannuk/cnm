@@ -6,9 +6,9 @@ import React, { Component } from 'react';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="cnm">
         <h1 className="header">Days with cnm</h1>
-        <FlipClock />
+        <FlipClock countDate={[2017, 10, 20]} />
       </div>
     );
   }

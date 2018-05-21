@@ -7,6 +7,7 @@ export default class FlipClock extends React.Component {
   constructor(props) {
     super(props);
     this.printed = false;
+    this.down = false;
     this.countDate = this.props.countDate || [2017, 10, 20];
     this.state = {
       days: 0,
@@ -20,16 +21,23 @@ export default class FlipClock extends React.Component {
     };
   }
   componentDidMount() {
-    this.timerID = setInterval(() => this.updateTime(), 50);
+    this.timerID = setInterval(() => this.updateTime(), 100);
   }
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
   updateTime() {
-    // get new date
-    var now = moment(new Date()); //todays date
-    var end = moment(this.countDate); // another date
-    const diff = now.diff(end);
+    let diff;
+    this.down = false;
+    var now = moment(new Date());
+    var end = moment(this.countDate);
+    if (now.isAfter(end)) {
+      diff = now.diff(end);
+    } else {
+      this.down = true;
+      diff = end.diff(now);
+    }
+
     var duration = moment.duration(diff);
     if (!this.printed) {
       console.log('duration', duration);
@@ -81,10 +89,10 @@ export default class FlipClock extends React.Component {
     const { days, hours, minutes, seconds, daysShuffle, hoursShuffle, minutesShuffle, secondsShuffle } = this.state;
     return (
       <div className={'flipClock'}>
-        <FlipUnitContainer unit={'days'} digit={days} shuffle={daysShuffle} />
-        <FlipUnitContainer unit={'hours'} digit={hours} shuffle={hoursShuffle} />
-        <FlipUnitContainer unit={'minutes'} digit={minutes} shuffle={minutesShuffle} />
-        <FlipUnitContainer unit={'seconds'} digit={seconds} shuffle={secondsShuffle} />
+        <FlipUnitContainer unit={'days'} digit={days} shuffle={daysShuffle} down={this.down} />
+        <FlipUnitContainer unit={'hours'} digit={hours} shuffle={hoursShuffle} down={this.down} />
+        <FlipUnitContainer unit={'minutes'} digit={minutes} shuffle={minutesShuffle} down={this.down} />
+        <FlipUnitContainer unit={'seconds'} digit={seconds} shuffle={secondsShuffle} down={this.down} />
       </div>
     );
   }
