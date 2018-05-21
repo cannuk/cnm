@@ -7,6 +7,7 @@ export default class FlipClock extends React.Component {
   constructor(props) {
     super(props);
     this.printed = false;
+    this.countDate = this.props.countDate || [2017, 10, 20];
     this.state = {
       days: 0,
       daysShuffle: true,
@@ -27,7 +28,7 @@ export default class FlipClock extends React.Component {
   updateTime() {
     // get new date
     var now = moment(new Date()); //todays date
-    var end = moment([2017, 10, 20]); // another date
+    var end = moment(this.countDate); // another date
     const diff = now.diff(end);
     var duration = moment.duration(diff);
     if (!this.printed) {
